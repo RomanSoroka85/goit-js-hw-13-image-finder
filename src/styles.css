@@ -1,0 +1,54 @@
+html {
+  box-sizing: border-box;
+}
+
+
+.conteiner {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.search-form {
+  margin: 0 auto;
+  width: 150px;
+  height: 40px;
+}
+
+.search-form input {
+ 
+  width: 150px;
+  height: 40px;
+  
+}
+
+
+.gallery {
+  list-style: none;
+ width: 1200px;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ flex-wrap: wrap;
+}
+.photo-card {
+  width: 380px;
+  
+}
+
+.img{
+  width: 380px;
+  
+}
+
+.load-more{
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  height: 40px;
+}
+
+.stats{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
