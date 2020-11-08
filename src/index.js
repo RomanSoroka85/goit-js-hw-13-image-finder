@@ -3,9 +3,9 @@ import apiService from './js/apiService';
 import refs from './js/refs';
 import debounce from 'lodash.debounce';
 import templateGallery from './templates/templateGallery.hbs';
-import "@babel/polyfill";
 
-apiService.toGetFeatch();
+// apiService.toGetFeatch();
+const btn = document.querySelector('.load-more');
 
 refs.search.addEventListener(
   'input',
@@ -13,24 +13,32 @@ refs.search.addEventListener(
     apiService.resetPage();
     if (e.target.value === '') {
       refs.gallery.innerHTML = '';
-    return;
+      return;
     }
     apiService.query = e.target.value;
-    apiService
-      .toGetFeatch()
-      .then(data => (refs.gallery.innerHTML = templateGallery(data)));
+    apiService.toGetFeatch().then(data => {
+      (refs.gallery.innerHTML = templateGallery(data)), removeClass(data);
+    });
   }, 500),
 );
 
 refs.loadMoreBtn.addEventListener('click', () => {
   apiService.setPage();
   autoScroll();
-  apiService
-    .toGetFeatch()
-    .then(data =>
-      refs.gallery.insertAdjacentHTML('beforeend', templateGallery(data)),
-    );
+  apiService.toGetFeatch().then(data => {
+    refs.gallery.insertAdjacentHTML('beforeend', templateGallery(data)),
+      removeClass(data);
+  });
 });
+
+function removeClass(data) {
+  console.log(data.length);
+  if (data.length > 11) {
+    btn.classList.remove('is-hidden');
+  } else {
+    btn.classList.add('is-hidden');
+  }
+}
 
 function autoScroll() {
   let scrollHeight =
